@@ -42,6 +42,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // Read data from Excel
-    implementation 'net.sourceforge.jexcelapi:jx1:2.6.12'
+    implementation 'net.sourceforge.jexcelapi:jxl:2.6.12'
     implementation 'com.loopj.android:android-async-http:1.4.10'
 }
