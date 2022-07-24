@@ -1,6 +1,8 @@
 package com.siddydevelops.vitbit.ui
 
 import android.app.DatePickerDialog
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.ContextMenu
@@ -12,7 +14,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.siddydevelops.vitbit.R
+import com.siddydevelops.vitbit.others.Constants.BLOCK_PREFERENCE
+import com.siddydevelops.vitbit.others.Constants.MESS_PREFERENCE
 import com.siddydevelops.vitbit.others.Constants.SCHEDULE_REGEX
+import com.siddydevelops.vitbit.others.Constants.SHARED_PREFERENCES
 import com.siddydevelops.vitbit.others.Constants.TIME_REGEX
 import jxl.Workbook
 import java.text.SimpleDateFormat
@@ -47,6 +52,8 @@ class MessActivity : AppCompatActivity() {
     private lateinit var curDateTV: TextView
     private lateinit var messTV: TextView
     private lateinit var blockTV: TextView
+    
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +77,14 @@ class MessActivity : AppCompatActivity() {
         monthInt = Integer.parseInt(SimpleDateFormat("MM", Locale.US).format(cal.time).format(date))
         curDate = SimpleDateFormat("dd", Locale.US).format(Date())
         calTV.text = "$curDate/$month, $year"
+
+        sharedPreferences = this.getSharedPreferences(SHARED_PREFERENCES,Context.MODE_PRIVATE)
+        if(!sharedPreferences.getString(BLOCK_PREFERENCE,"defaultName").equals("defaultName")) {
+            blockTV.text = sharedPreferences.getString(BLOCK_PREFERENCE,"defaultName")
+        }
+        if(!sharedPreferences.getString(MESS_PREFERENCE,"defaultName").equals("defaultName")) {
+            messTV.text = sharedPreferences.getString(MESS_PREFERENCE,"defaultName")
+        }
 
         calenderIV.setOnClickListener {
             setTVDate()
@@ -198,6 +213,10 @@ class MessActivity : AppCompatActivity() {
             "MH-G Block" -> blockTV.text = "MH-G Block"
             "MH-K Block" -> blockTV.text = "MH-K Block"
         }
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+        editor.putString(BLOCK_PREFERENCE,blockTV.text.toString())
+        editor.putString(MESS_PREFERENCE,messTV.text.toString())
+        editor.apply()
         return true
     }
 }
