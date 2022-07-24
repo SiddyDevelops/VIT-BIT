@@ -16,9 +16,16 @@ import androidx.appcompat.app.AppCompatActivity
 import com.siddydevelops.vitbit.R
 import com.siddydevelops.vitbit.others.Constants.BLOCK_PREFERENCE
 import com.siddydevelops.vitbit.others.Constants.MESS_PREFERENCE
+import com.siddydevelops.vitbit.others.Constants.MH_G
+import com.siddydevelops.vitbit.others.Constants.MH_K
+import com.siddydevelops.vitbit.others.Constants.MH_L
+import com.siddydevelops.vitbit.others.Constants.MH_Q
+import com.siddydevelops.vitbit.others.Constants.NON_VEG_MESS
 import com.siddydevelops.vitbit.others.Constants.SCHEDULE_REGEX
 import com.siddydevelops.vitbit.others.Constants.SHARED_PREFERENCES
+import com.siddydevelops.vitbit.others.Constants.SPECIAL_MESS
 import com.siddydevelops.vitbit.others.Constants.TIME_REGEX
+import com.siddydevelops.vitbit.others.Constants.VEG_MESS
 import jxl.Workbook
 import java.text.SimpleDateFormat
 import java.util.*
@@ -192,26 +199,26 @@ class MessActivity : AppCompatActivity() {
         menuInfo: ContextMenu.ContextMenuInfo?
     ) {
         if(v == messSelectionLL) {
-            menu?.add(0, v.id,0,"Veg Mess")
-            menu?.add(0, v.id,0,"Non-Veg Mess")
-            menu?.add(0, v.id,0,"Special Mess")
+            menu?.add(0, v.id,0,VEG_MESS)
+            menu?.add(0, v.id,0,NON_VEG_MESS)
+            menu?.add(0, v.id,0,SPECIAL_MESS)
         } else if(v == blockSelectionLL) {
-            menu?.add(0, v.id,0,"MH-Q Block")
-            menu?.add(0, v.id,0,"MH-L Block")
-            menu?.add(0, v.id,0,"MH-G Block")
-            menu?.add(0, v.id,0,"MH-K Block")
+            menu?.add(0, v.id,0,MH_Q)
+            menu?.add(0, v.id,0,MH_L)
+            menu?.add(0, v.id,0,MH_G)
+            menu?.add(0, v.id,0,MH_K)
         }
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
         when(item.title) {
-            "Veg Mess" -> messTV.text = "Veg Mess"
-            "Non-Veg Mess" -> messTV.text = "Non-Veg Mess"
-            "Special Mess" -> messTV.text = "Special Mess"
-            "MH-Q Block" -> blockTV.text = "MH-Q Block"
-            "MH-L Block" -> blockTV.text = "MH-L Block"
-            "MH-G Block" -> blockTV.text = "MH-G Block"
-            "MH-K Block" -> blockTV.text = "MH-K Block"
+            "Veg Mess" -> messTV.text = VEG_MESS
+            "Non-Veg Mess" -> messTV.text = NON_VEG_MESS
+            "Special Mess" -> messTV.text = SPECIAL_MESS
+            "MH-Q Block" -> blockTV.text = MH_Q
+            "MH-L Block" -> blockTV.text = MH_L
+            "MH-G Block" -> blockTV.text = MH_G
+            "MH-K Block" -> blockTV.text = MH_K
         }
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
         editor.putString(BLOCK_PREFERENCE,blockTV.text.toString())
