@@ -3,7 +3,11 @@ package com.siddydevelops.vitbit.ui
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
+import android.view.ContextMenu
+import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -32,25 +36,33 @@ class MessActivity : AppCompatActivity() {
     private var year: String = ""
     private lateinit var date: Date
 
-    //private lateinit var breakFastTV: TextView
-    private lateinit var calenderIV: ImageView
+    private lateinit var calenderIV: LinearLayout
+    private lateinit var messSelectionLL: LinearLayout
+    private lateinit var blockSelectionLL: LinearLayout
     private lateinit var calTV: TextView
     private lateinit var breakfastTV: TextView
     private lateinit var lunchTV: TextView
     private lateinit var snacksTV: TextView
     private lateinit var dinnerTV: TextView
+    private lateinit var curDateTV: TextView
+    private lateinit var messTV: TextView
+    private lateinit var blockTV: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mess)
 
-        //breakFastTV = findViewById(R.id.breakFastTV)
         calenderIV = findViewById(R.id.calenderIV)
+        messSelectionLL = findViewById(R.id.messSelectionLL)
+        blockSelectionLL = findViewById(R.id.blockSelectionLL)
         calTV = findViewById(R.id.calTV)
         breakfastTV = findViewById(R.id.breakfastTV)
         lunchTV = findViewById(R.id.lunchTV)
         snacksTV = findViewById(R.id.snacksTV)
         dinnerTV = findViewById(R.id.dinnerTV)
+        curDateTV = findViewById(R.id.curDateTV)
+        messTV = findViewById(R.id.messTV)
+        blockTV = findViewById(R.id.blockTV)
 
         date = Calendar.getInstance().time
         month = SimpleDateFormat("MMMM", Locale.US).format(Date())
@@ -61,6 +73,16 @@ class MessActivity : AppCompatActivity() {
 
         calenderIV.setOnClickListener {
             setTVDate()
+        }
+
+        registerForContextMenu(messSelectionLL)
+        messSelectionLL.setOnClickListener {
+            messSelectionLL.showContextMenu()
+        }
+
+        registerForContextMenu(blockSelectionLL)
+        blockSelectionLL.setOnClickListener {
+            blockSelectionLL.showContextMenu()
         }
 
         try {
@@ -145,6 +167,37 @@ class MessActivity : AppCompatActivity() {
         curDate = SimpleDateFormat("dd", Locale.US).format(cal.time)
         month = SimpleDateFormat("MMMM", Locale.US).format(cal.time)
         calTV.text = "$curDate/$month, $year"
+        curDateTV.text = "$curDate/$month's Menu"
         getByDate(curDate)
+    }
+
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        if(v == messSelectionLL) {
+            menu?.add(0, v.id,0,"Veg Mess")
+            menu?.add(0, v.id,0,"Non-Veg Mess")
+            menu?.add(0, v.id,0,"Special Mess")
+        } else if(v == blockSelectionLL) {
+            menu?.add(0, v.id,0,"MH-Q Block")
+            menu?.add(0, v.id,0,"MH-L Block")
+            menu?.add(0, v.id,0,"MH-G Block")
+            menu?.add(0, v.id,0,"MH-K Block")
+        }
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        when(item.title) {
+            "Veg Mess" -> messTV.text = "Veg Mess"
+            "Non-Veg Mess" -> messTV.text = "Non-Veg Mess"
+            "Special Mess" -> messTV.text = "Special Mess"
+            "MH-Q Block" -> blockTV.text = "MH-Q Block"
+            "MH-L Block" -> blockTV.text = "MH-L Block"
+            "MH-G Block" -> blockTV.text = "MH-G Block"
+            "MH-K Block" -> blockTV.text = "MH-K Block"
+        }
+        return true
     }
 }
