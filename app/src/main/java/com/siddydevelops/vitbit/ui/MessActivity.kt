@@ -32,21 +32,24 @@ class MessActivity : AppCompatActivity() {
     private var year: String = ""
     private lateinit var date: Date
 
-    private lateinit var breakFastTV: TextView
+    //private lateinit var breakFastTV: TextView
     private lateinit var calenderIV: ImageView
+    private lateinit var calTV: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mess)
 
-        breakFastTV = findViewById(R.id.breakFastTV)
+        //breakFastTV = findViewById(R.id.breakFastTV)
         calenderIV = findViewById(R.id.calenderIV)
+        calTV = findViewById(R.id.calTV)
 
         date = Calendar.getInstance().time
         month = SimpleDateFormat("MMMM", Locale.US).format(Date())
         year = SimpleDateFormat("yyyy", Locale.US).format(Date())
         monthInt = Integer.parseInt(SimpleDateFormat("MM", Locale.US).format(cal.time).format(date))
         curDate = SimpleDateFormat("dd", Locale.US).format(Date())
+        calTV.text = "$curDate/$month, $year"
 
         calenderIV.setOnClickListener {
             setTVDate()
@@ -99,7 +102,7 @@ class MessActivity : AppCompatActivity() {
                 if (timeRegex.find(time)!!.value == date) {
                     Log.d("ROW::", "DATA EXTRACT HERE:: $row")
                     // We require row + 1 to access data items
-                    breakFastTV.text = breakFastItems[row]
+                    //breakFastTV.text = breakFastItems[row]
                 }
             }
             row += 1
@@ -128,7 +131,7 @@ class MessActivity : AppCompatActivity() {
         val sdf = SimpleDateFormat(myFormat, Locale.US)
         curDate = SimpleDateFormat("dd", Locale.US).format(cal.time)
         month = SimpleDateFormat("MMMM", Locale.US).format(cal.time)
-        Log.d("Date::","$curDate/$month, $year")
+        calTV.text = "$curDate/$month, $year"
         getByDate(curDate)
     }
 
