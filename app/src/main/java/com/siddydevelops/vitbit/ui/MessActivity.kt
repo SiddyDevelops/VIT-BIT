@@ -1,13 +1,19 @@
 package com.siddydevelops.vitbit.ui
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.siddydevelops.vitbit.R
 import com.siddydevelops.vitbit.others.Constants.SCHEDULE_REGEX
 import com.siddydevelops.vitbit.others.Constants.TIME_REGEX
 import jxl.Workbook
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MessActivity : AppCompatActivity() {
 
@@ -19,14 +25,32 @@ class MessActivity : AppCompatActivity() {
 
     private val regex = Regex(SCHEDULE_REGEX)
     private val timeRegex = Regex(TIME_REGEX)
+    private var cal: Calendar = Calendar.getInstance()
+    private var monthInt: Int = -1
+    private lateinit var curDate: String
+    private var month: String = ""
+    private var year: String = ""
+    private lateinit var date: Date
 
     private lateinit var breakFastTV: TextView
+    private lateinit var calenderIV: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mess)
 
         breakFastTV = findViewById(R.id.breakFastTV)
+        calenderIV = findViewById(R.id.calenderIV)
+
+        date = Calendar.getInstance().time
+        month = SimpleDateFormat("MMMM", Locale.US).format(Date())
+        year = SimpleDateFormat("yyyy", Locale.US).format(Date())
+        monthInt = Integer.parseInt(SimpleDateFormat("MM", Locale.US).format(cal.time).format(date))
+        curDate = SimpleDateFormat("dd", Locale.US).format(Date())
+
+        calenderIV.setOnClickListener {
+            setTVDate()
+        }
 
         try {
             val assetManager = assets
@@ -79,6 +103,33 @@ class MessActivity : AppCompatActivity() {
             }
             row += 1
         }
+    }
+
+    private fun setTVDate() {
+        DatePickerDialog(this,
+            { view, year, monthOfYear, dayOfMonth ->
+                cal.set(Calendar.YEAR, year)
+                cal.set(Calendar.MONTH, monthOfYear)
+                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                if(monthOfYear + 1 <= monthInt) {
+                    updateDateInView()
+                } else {
+                    Toast.makeText(this@MessActivity,"Cannot select future dates.", Toast.LENGTH_SHORT).show()
+                }
+            },
+            cal.get(Calendar.YEAR),
+            cal.get(Calendar.MONTH),
+            cal.get(Calendar.DAY_OF_MONTH)).show()
+    }
+
+    private fun updateDateInView() {
+        val myFormat = "dd/MM/yyyy"
+        val sdf = SimpleDateFormat(myFormat, Locale.US)
+        curDate = SimpleDateFormat("dd", Locale.US).format(cal.time)
+        month = SimpleDateFormat("MMMM", Locale.US).format(cal.time)
+        //tvMonthYear.text = "$curDate/$month, $year"
+        Log.d("Date::","$curDate/$month, $year")
+        //getDataFromDB(curDate,month)
     }
 
 }
