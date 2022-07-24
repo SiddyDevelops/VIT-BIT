@@ -1,5 +1,6 @@
 package com.siddydevelops.vitbit.ui
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.SharedPreferences
@@ -154,7 +155,7 @@ class MessActivity : AppCompatActivity() {
             Log.d("Time::",scheduleTimes.toString())
             for (time in scheduleTimes) {
                 Log.d("Time::",time)
-                if (timeRegex.find(time)?.value ?: false == date) {
+                if ((timeRegex.find(time)?.value ?: false) == date) {
                     Log.d("ROW::", "DATA EXTRACT HERE:: $row")
                     breakfastTV.text = breakFastItems[row-1]
                     lunchTV.text = lunchItems[row-1]
@@ -168,7 +169,7 @@ class MessActivity : AppCompatActivity() {
 
     private fun setTVDate() {
         DatePickerDialog(this,
-            { view, year, monthOfYear, dayOfMonth ->
+            { _, year, monthOfYear, dayOfMonth ->
                 cal.set(Calendar.YEAR, year)
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
@@ -185,7 +186,6 @@ class MessActivity : AppCompatActivity() {
 
     private fun updateDateInView() {
         val myFormat = "dd/MM/yyyy"
-        val sdf = SimpleDateFormat(myFormat, Locale.US)
         curDate = SimpleDateFormat("dd", Locale.US).format(cal.time)
         month = SimpleDateFormat("MMMM", Locale.US).format(cal.time)
         calTV.text = "$curDate/$month, $year"
