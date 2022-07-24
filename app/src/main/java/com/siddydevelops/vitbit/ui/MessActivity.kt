@@ -84,7 +84,7 @@ class MessActivity : AppCompatActivity() {
             Log.d("ExcelData:: ", lunchItems.toString())
             Log.d("ExcelData:: ", snacksItems.toString())
             Log.d("ExcelData:: ", dinnerItems.toString())
-            getByDate("07")
+            //getByDate("07")
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -99,6 +99,7 @@ class MessActivity : AppCompatActivity() {
                 if (timeRegex.find(time)!!.value == date) {
                     Log.d("ROW::", "DATA EXTRACT HERE:: $row")
                     // We require row + 1 to access data items
+                    breakFastTV.text = breakFastItems[row]
                 }
             }
             row += 1
@@ -127,9 +128,8 @@ class MessActivity : AppCompatActivity() {
         val sdf = SimpleDateFormat(myFormat, Locale.US)
         curDate = SimpleDateFormat("dd", Locale.US).format(cal.time)
         month = SimpleDateFormat("MMMM", Locale.US).format(cal.time)
-        //tvMonthYear.text = "$curDate/$month, $year"
         Log.d("Date::","$curDate/$month, $year")
-        //getDataFromDB(curDate,month)
+        getByDate(curDate)
     }
 
 }
