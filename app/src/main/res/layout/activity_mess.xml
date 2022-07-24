@@ -9,7 +9,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -171,7 +172,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginStart="15dp"
                 android:elevation="8dp"
@@ -183,7 +184,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="horizontal">
 
                     <FrameLayout
@@ -228,7 +229,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:layout_margin="5dp"
-                            android:textSize="15sp"
+                            android:textSize="13sp"
                             android:fontFamily="@font/poppins_medium"
                             android:text="@string/para_placeholder"/>
 
@@ -241,7 +242,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginStart="15dp"
                 android:elevation="8dp"
@@ -253,7 +254,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="horizontal">
 
                     <FrameLayout
@@ -298,7 +299,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:layout_margin="5dp"
-                            android:textSize="15sp"
+                            android:textSize="13sp"
                             android:fontFamily="@font/poppins_medium"
                             android:text="@string/para_placeholder"/>
 
@@ -311,7 +312,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView4"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginStart="15dp"
                 android:elevation="8dp"
@@ -323,7 +324,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="horizontal">
 
                     <FrameLayout
@@ -368,7 +369,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:layout_margin="5dp"
-                            android:textSize="15sp"
+                            android:textSize="13sp"
                             android:fontFamily="@font/poppins_medium"
                             android:text="@string/para_placeholder"/>
 
@@ -381,20 +382,21 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView5"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginStart="15dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="20dp"
                 android:elevation="8dp"
                 android:padding="15dp"
                 app:cardBackgroundColor="@color/card_bg"
                 app:cardCornerRadius="10dp"
                 android:layout_marginTop="30dp"
-                app:layout_constraintTop_toBottomOf="@+id/cardView4">
+                app:layout_constraintTop_toBottomOf="@+id/cardView4"
+                app:layout_constraintBottom_toBottomOf="parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="horizontal">
 
                     <FrameLayout
@@ -439,7 +441,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:layout_margin="5dp"
-                            android:textSize="15sp"
+                            android:textSize="13sp"
                             android:fontFamily="@font/poppins_medium"
                             android:text="@string/para_placeholder"/>
 

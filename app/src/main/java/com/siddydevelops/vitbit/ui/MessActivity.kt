@@ -95,22 +95,27 @@ class MessActivity : AppCompatActivity() {
             Log.d("ExcelData:: ", lunchItems.toString())
             Log.d("ExcelData:: ", snacksItems.toString())
             Log.d("ExcelData:: ", dinnerItems.toString())
-            //getByDate("07")
+            getByDate(curDate)
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
     private fun getByDate(date: String) {
+        Log.d("Date::",date)
         var row = 1
         for (dates in scheduledDates) {
             val matches = regex.findAll(dates)
             val scheduleTimes = matches.map { it.groupValues[1] }.toList()
+            Log.d("Time::",scheduleTimes.toString())
             for (time in scheduleTimes) {
-                if (timeRegex.find(time)!!.value == date) {
+                Log.d("Time::",time)
+                if (timeRegex.find(time)?.value ?: false == date) {
                     Log.d("ROW::", "DATA EXTRACT HERE:: $row")
-                    // We require row + 1 to access data items
-                    //breakFastTV.text = breakFastItems[row]
+                    breakfastTV.text = breakFastItems[row-1]
+                    lunchTV.text = lunchItems[row-1]
+                    snacksTV.text = snacksItems[row-1]
+                    dinnerTV.text = dinnerItems[row-1]
                 }
             }
             row += 1
@@ -142,5 +147,4 @@ class MessActivity : AppCompatActivity() {
         calTV.text = "$curDate/$month, $year"
         getByDate(curDate)
     }
-
 }
