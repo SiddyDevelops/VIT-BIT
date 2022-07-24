@@ -35,6 +35,10 @@ class MessActivity : AppCompatActivity() {
     //private lateinit var breakFastTV: TextView
     private lateinit var calenderIV: ImageView
     private lateinit var calTV: TextView
+    private lateinit var breakfastTV: TextView
+    private lateinit var lunchTV: TextView
+    private lateinit var snacksTV: TextView
+    private lateinit var dinnerTV: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +47,10 @@ class MessActivity : AppCompatActivity() {
         //breakFastTV = findViewById(R.id.breakFastTV)
         calenderIV = findViewById(R.id.calenderIV)
         calTV = findViewById(R.id.calTV)
+        breakfastTV = findViewById(R.id.breakfastTV)
+        lunchTV = findViewById(R.id.lunchTV)
+        snacksTV = findViewById(R.id.snacksTV)
+        dinnerTV = findViewById(R.id.dinnerTV)
 
         date = Calendar.getInstance().time
         month = SimpleDateFormat("MMMM", Locale.US).format(Date())

@@ -13,4 +13,5 @@
     <color name="card_bg">#292929</color>
     <color name="card_shadow">#222128</color>
     <color name="card_shadow_opaque">#322F3D</color>
+    <color name="grey">#898989</color>
 </resources>

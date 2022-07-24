@@ -16,13 +16,14 @@
             android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="20dp"
-                android:elevation="8dp"
-                app:contentPadding="15dp"
                 android:layout_margin="10dp"
+                android:elevation="8dp"
                 app:cardBackgroundColor="@color/card_shadow"
+                app:cardCornerRadius="20dp"
+                app:contentPadding="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -53,7 +54,7 @@
                                     android:id="@+id/calenderIV"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_calender"/>
+                                    android:src="@drawable/ic_calender" />
 
                             </LinearLayout>
 
@@ -61,13 +62,13 @@
                                 android:id="@+id/calTV"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="10dp"
-                                android:textColor="@color/white"
                                 android:layout_gravity="center"
+                                android:layout_marginStart="10dp"
                                 android:fontFamily="@font/poppins_light"
                                 android:includeFontPadding="false"
-                                android:textSize="14sp"
-                                android:text="@string/date_placeholder"/>
+                                android:text="@string/date_placeholder"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
 
                         </LinearLayout>
 
@@ -82,8 +83,8 @@
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:layout_marginEnd="5dp"
+                            android:layout_weight="1"
                             android:background="@drawable/box_bg"
                             android:orientation="vertical">
 
@@ -101,20 +102,20 @@
                                     <ImageView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:src="@drawable/ic_mess"/>
+                                        android:src="@drawable/ic_mess" />
 
                                 </LinearLayout>
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="10dp"
-                                    android:textColor="@color/white"
                                     android:layout_gravity="center"
+                                    android:layout_marginStart="10dp"
                                     android:fontFamily="@font/poppins_light"
                                     android:includeFontPadding="false"
-                                    android:textSize="14sp"
-                                    android:text="@string/mess_selection"/>
+                                    android:text="@string/mess_selection"
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp" />
 
                             </LinearLayout>
 
@@ -123,8 +124,8 @@
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:layout_marginStart="5dp"
+                            android:layout_weight="1"
                             android:background="@drawable/box_bg"
                             android:orientation="vertical">
 
@@ -142,24 +143,305 @@
                                     <ImageView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:src="@drawable/ic_block"/>
+                                        android:src="@drawable/ic_block" />
 
                                 </LinearLayout>
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="10dp"
-                                    android:textColor="@color/white"
                                     android:layout_gravity="center"
+                                    android:layout_marginStart="10dp"
                                     android:fontFamily="@font/poppins_light"
                                     android:includeFontPadding="false"
-                                    android:textSize="14sp"
-                                    android:text="@string/block_selection"/>
+                                    android:text="@string/block_selection"
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp" />
 
                             </LinearLayout>
 
                         </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:elevation="8dp"
+                android:padding="15dp"
+                app:cardBackgroundColor="@color/card_bg"
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="125dp"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/breakfast_img"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:layout_gravity="center"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:text="@string/breakfast"/>
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/grey"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="5dp"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/_07_00_09_00"/>
+
+                        <TextView
+                            android:id="@+id/breakfastTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:layout_margin="5dp"
+                            android:textSize="15sp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="@string/para_placeholder"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:elevation="8dp"
+                android:padding="15dp"
+                app:cardBackgroundColor="@color/card_bg"
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintTop_toBottomOf="@+id/cardView2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="125dp"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/lunch_img"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:layout_gravity="center"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:text="@string/lunch"/>
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/grey"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="5dp"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/_12_30_02_30"/>
+
+                        <TextView
+                            android:id="@+id/lunchTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:layout_margin="5dp"
+                            android:textSize="15sp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="@string/para_placeholder"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:elevation="8dp"
+                android:padding="15dp"
+                app:cardBackgroundColor="@color/card_bg"
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintTop_toBottomOf="@+id/cardView3">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="125dp"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/snacks_img"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:layout_gravity="center"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:text="@string/snacks"/>
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/grey"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="5dp"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/_16_30_18_00"/>
+
+                        <TextView
+                            android:id="@+id/snacksTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:layout_margin="5dp"
+                            android:textSize="15sp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="@string/para_placeholder"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="10dp"
+                android:elevation="8dp"
+                android:padding="15dp"
+                app:cardBackgroundColor="@color/card_bg"
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintTop_toBottomOf="@+id/cardView4">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="125dp"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/dinner_img"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:layout_gravity="center"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:text="@string/dinner"/>
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/grey"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="5dp"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/_16_30_18_00"/>
+
+                        <TextView
+                            android:id="@+id/dinnerTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:layout_margin="5dp"
+                            android:textSize="15sp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="@string/para_placeholder"/>
 
                     </LinearLayout>
 
