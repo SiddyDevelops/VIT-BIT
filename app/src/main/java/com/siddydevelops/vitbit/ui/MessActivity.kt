@@ -166,14 +166,11 @@ class MessActivity : AppCompatActivity() {
     }
 
     private fun getByDate(date: String) {
-        Log.d("Date::",date)
         var row = 1
         for (dates in scheduledDates) {
             val matches = regex.findAll(dates)
             val scheduleTimes = matches.map { it.groupValues[1] }.toList()
-            Log.d("Time::",scheduleTimes.toString())
             for (time in scheduleTimes) {
-                Log.d("Time::",time)
                 if ((timeRegex.find(time)?.value ?: false) == date) {
                     Log.d("ROW::", "DATA EXTRACT HERE:: $row")
                     breakfastTV.text = breakFastItems[row-1]
