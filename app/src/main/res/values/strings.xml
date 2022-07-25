@@ -5,11 +5,12 @@
     <string name="block_selection">Block Selection</string>
     <string name="_07_00_09_00">07:00 - 09:00</string>
     <string name="breakfast">Breakfast</string>
-    <string name="_12_30_02_30">12:30 - 02:30</string>
+    <string name="_12_30_02_30">12:30 - 14:30</string>
     <string name="para_placeholder">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis</string>
     <string name="lunch">Lunch</string>
     <string name="snacks">Snacks</string>
     <string name="_16_30_18_00">16:30 - 18:00</string>
     <string name="dinner">Dinner</string>
     <string name="today_s_menu">Today\'s Menu</string>
+    <string name="_19_30_21_00">19:30-21:00</string>
 </resources>

@@ -14,6 +14,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import com.siddydevelops.vitbit.R
 import com.siddydevelops.vitbit.others.Constants.BLOCK_PREFERENCE
 import com.siddydevelops.vitbit.others.Constants.MESS_PREFERENCE
@@ -31,6 +32,7 @@ import jxl.Workbook
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.properties.Delegates
 
 class MessActivity : AppCompatActivity() {
 
@@ -48,6 +50,7 @@ class MessActivity : AppCompatActivity() {
     private var month: String = ""
     private var year: String = ""
     private lateinit var date: Date
+    private var curTime by Delegates.notNull<Int>()
 
     private lateinit var calenderIV: LinearLayout
     private lateinit var messSelectionLL: LinearLayout
@@ -60,7 +63,11 @@ class MessActivity : AppCompatActivity() {
     private lateinit var curDateTV: TextView
     private lateinit var messTV: TextView
     private lateinit var blockTV: TextView
-    
+    private lateinit var breakfastCV: CardView
+    private lateinit var lunchCV: CardView
+    private lateinit var snacksCV: CardView
+    private lateinit var dinnerCV: CardView
+
     private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,6 +85,10 @@ class MessActivity : AppCompatActivity() {
         curDateTV = findViewById(R.id.curDateTV)
         messTV = findViewById(R.id.messTV)
         blockTV = findViewById(R.id.blockTV)
+        breakfastCV = findViewById(R.id.breakfastCV)
+        lunchCV = findViewById(R.id.lunchCV)
+        snacksCV = findViewById(R.id.snacksCV)
+        dinnerCV = findViewById(R.id.dinnerCV)
 
         date = Calendar.getInstance().time
         month = SimpleDateFormat("MMMM", Locale.US).format(Date())
@@ -85,6 +96,7 @@ class MessActivity : AppCompatActivity() {
         monthInt = Integer.parseInt(SimpleDateFormat("MM", Locale.US).format(cal.time).format(date))
         curDate = SimpleDateFormat("dd", Locale.US).format(Date())
         calTV.text = "$curDate/$month, $year"
+        curTime = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
 
         sharedPreferences = this.getSharedPreferences(SHARED_PREFERENCES,Context.MODE_PRIVATE)
         if(!sharedPreferences.getString(BLOCK_PREFERENCE,"defaultName").equals("defaultName")) {
@@ -106,6 +118,13 @@ class MessActivity : AppCompatActivity() {
         registerForContextMenu(blockSelectionLL)
         blockSelectionLL.setOnClickListener {
             blockSelectionLL.showContextMenu()
+        }
+
+        when (curTime) {
+            in 2..9 -> breakfastCV.setCardBackgroundColor(getColor(R.color.card_bg_highlight))
+            in 10..15 -> lunchCV.setCardBackgroundColor(getColor(R.color.card_bg_highlight))
+            in 15..18 -> snacksCV.setCardBackgroundColor(getColor(R.color.card_bg_highlight))
+            in 19..22 -> dinnerCV.setCardBackgroundColor(getColor(R.color.card_bg_highlight))
         }
 
         try {
@@ -185,7 +204,6 @@ class MessActivity : AppCompatActivity() {
     }
 
     private fun updateDateInView() {
-        val myFormat = "dd/MM/yyyy"
         curDate = SimpleDateFormat("dd", Locale.US).format(cal.time)
         month = SimpleDateFormat("MMMM", Locale.US).format(cal.time)
         calTV.text = "$curDate/$month, $year"
