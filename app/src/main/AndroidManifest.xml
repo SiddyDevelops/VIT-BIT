@@ -20,12 +20,15 @@
             android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.something.MyWidget.ACTION_WIDGET_RECEIVER"/>
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/mess_widget_info" />
         </receiver>
+        <service android:enabled="true" android:name=".backend.WidgetService" />
 
         <activity
             android:name=".ui.MessActivity"

@@ -1,16 +1,20 @@
 package com.siddydevelops.vitbit.ui
 
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
-import android.util.Log
+import android.content.Intent
 import android.widget.RemoteViews
 import com.siddydevelops.vitbit.R
+import com.siddydevelops.vitbit.backend.WidgetService
 import com.siddydevelops.vitbit.others.Constants
 import jxl.Workbook
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.properties.Delegates
+
 
 /**
  * Implementation of App Widget functionality.
@@ -18,6 +22,8 @@ import kotlin.properties.Delegates
 class MessWidget : AppWidgetProvider() {
 
     private var curTime by Delegates.notNull<Int>()
+    private var service: PendingIntent? = null
+
     override fun onUpdate(
         context: Context,
         appWidgetManager: AppWidgetManager,
@@ -28,6 +34,20 @@ class MessWidget : AppWidgetProvider() {
             updateAppWidget(context, appWidgetManager, appWidgetId)
         }
         curTime = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+        val m = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+        val TIME = Calendar.getInstance()
+        TIME[Calendar.MINUTE] = 0
+        TIME[Calendar.SECOND] = 0
+        TIME[Calendar.MILLISECOND] = 0
+
+        val i = Intent(context, WidgetService::class.java)
+
+        if (service == null) {
+            service = PendingIntent.getService(context, 0, i, PendingIntent.FLAG_CANCEL_CURRENT)
+        }
+
+        m.setRepeating(AlarmManager.RTC, TIME.time.time, (1000 * 1).toLong(), service)
     }
 
     override fun onEnabled(context: Context) {
@@ -36,6 +56,18 @@ class MessWidget : AppWidgetProvider() {
 
     override fun onDisabled(context: Context) {
         // Enter relevant functionality for when the last widget is disabled
+        val m = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        if (service != null) {
+            m.cancel(service)
+        }
+    }
+
+    override fun onReceive(context: Context?, intent: Intent?) {
+        super.onReceive(context, intent)
+    }
+
+    override fun onDeleted(context: Context?, appWidgetIds: IntArray?) {
+        super.onDeleted(context, appWidgetIds)
     }
 }
 
@@ -57,6 +89,9 @@ internal fun updateAppWidget(
     // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.mess_widget)
     //views.setTextViewText(R.id.itemsTV, widgetText)
+    val intent = Intent(context, MessActivity::class.java)
+    val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+    views.setOnClickPendingIntent(R.id.layoutWidget, pendingIntent)
     try {
         val assetManager = context.assets
         val inputStream = assetManager.open("mess_schedule.xls")

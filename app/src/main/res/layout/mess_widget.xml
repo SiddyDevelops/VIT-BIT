@@ -3,6 +3,7 @@
     style="@style/Widget.VITBIT.AppWidget.Container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/layoutWidget"
     android:theme="@style/Theme.VITBIT.AppWidgetContainer">
 
     <LinearLayout

@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable-v21/app_widget_background.xml" value="0.1985" />
         <entry key="app/src/main/res/drawable-v21/app_widget_inner_view_background.xml" value="0.1985" />
+        <entry key="app/src/main/res/drawable-v21/ic_mess_black.xml" value="0.1985" />
         <entry key="app/src/main/res/drawable/box_bg.xml" value="0.1985" />
         <entry key="app/src/main/res/drawable/ic_block.xml" value="0.285" />
         <entry key="app/src/main/res/drawable/ic_calendar.xml" value="0.1985" />
