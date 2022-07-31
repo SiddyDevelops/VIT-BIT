@@ -10,7 +10,7 @@
 - Integrate the ML based API which would automate the task of scanning the Menu.
 - Add database which would store the mess menu for different hostel block(Girls/Boys).
 
-*Note: The menu which is currently available is of Q-Block Boys Hostel, Special Mess.*
+*Note: The menu which is currently available is of Q-Block (Boys Hostel), Special Mess.*
 
 ## From the Developer:
 
