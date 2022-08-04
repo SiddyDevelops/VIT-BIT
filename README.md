@@ -12,6 +12,10 @@
 
 *Note: The menu which is currently available is of Q-Block (Boys Hostel), Special Mess.*
 
+## Updating Schedule Monthly:
+- Generate new Excel(xls) file and copy paste its contents in ``mess_schedule.xls`` file.
+- In ``Constants.kt`` file, change TIME_REGEX month accordingly.
+
 ## From the Developer:
 
 This Android App is designed and developed by <a href="https://siddydevelops.github.io/">Siddharth Singh<a/>. All copyrights are reserved. Contributions and issues are always welcome.
