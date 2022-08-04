@@ -16,6 +16,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <TextView
+                android:id="@+id/recogTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:includeFontPadding="false"
+                android:text="@string/designed_developed_by_siddharth_singh"
+                android:textColor="@color/card_bg_highlight"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
                 android:layout_width="match_parent"
@@ -27,7 +44,7 @@
                 app:contentPadding="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/recogTV">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -178,10 +195,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="@string/today_s_menu"
-                android:textColor="@color/white"
                 android:fontFamily="@font/poppins_semi_bold"
                 android:includeFontPadding="false"
+                android:text="@string/today_s_menu"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -246,8 +263,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="7dp"
-                            android:includeFontPadding="false"
                             android:fontFamily="@font/poppins_medium"
+                            android:includeFontPadding="false"
                             android:text="@string/para_placeholder"
                             android:textColor="@color/white"
                             android:textSize="13sp" />
@@ -387,8 +404,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="7dp"
-                            android:includeFontPadding="false"
                             android:fontFamily="@font/poppins_medium"
+                            android:includeFontPadding="false"
                             android:text="@string/para_placeholder"
                             android:textColor="@color/white"
                             android:textSize="13sp" />
@@ -460,8 +477,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="7dp"
-                            android:includeFontPadding="false"
                             android:fontFamily="@font/poppins_medium"
+                            android:includeFontPadding="false"
                             android:text="@string/para_placeholder"
                             android:textColor="@color/white"
                             android:textSize="13sp" />
