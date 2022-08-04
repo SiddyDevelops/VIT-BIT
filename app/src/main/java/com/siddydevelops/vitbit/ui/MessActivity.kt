@@ -132,7 +132,7 @@ class MessActivity : AppCompatActivity() {
             val inputStream = assetManager.open("mess_schedule.xls")
             val workbook = Workbook.getWorkbook(inputStream)
             val sheet = workbook.getSheet(0)                        //Two sheets per tt
-            val rows = sheet.rows
+            val rows = 7
             val col = sheet.columns
             for (j in 0 until rows - 1) {
                 val cell = sheet.getCell(0, j + 1)       //Date and Days
@@ -170,6 +170,7 @@ class MessActivity : AppCompatActivity() {
         for (dates in scheduledDates) {
             val matches = regex.findAll(dates)
             val scheduleTimes = matches.map { it.groupValues[1] }.toList()
+            Log.d("TIMES", scheduleTimes.toString())
             for (time in scheduleTimes) {
                 if ((timeRegex.find(time)?.value ?: false) == date) {
                     Log.d("ROW::", "DATA EXTRACT HERE:: $row")
