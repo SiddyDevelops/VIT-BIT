@@ -110,12 +110,15 @@ class MessActivity : AppCompatActivity() {
             setTVDate()
         }
 
-        registerForContextMenu(messSelectionLL)
+        messTV.text = SPECIAL_MESS
+        blockTV.text = MH_Q
+
+        //registerForContextMenu(messSelectionLL)
         messSelectionLL.setOnClickListener {
             messSelectionLL.showContextMenu()
         }
 
-        registerForContextMenu(blockSelectionLL)
+        //registerForContextMenu(blockSelectionLL)
         blockSelectionLL.setOnClickListener {
             blockSelectionLL.showContextMenu()
         }
