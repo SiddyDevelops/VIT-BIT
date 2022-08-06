@@ -16,6 +16,12 @@
 - Generate new Excel(xls) file and copy paste its contents in ``mess_schedule.xls`` file.
 - In ``Constants.kt`` file, change TIME_REGEX month accordingly.
 
+## Screen-shots:
+<p align="center">
+  <img width="200" height="400" src="https://user-images.githubusercontent.com/72121163/183256531-450bd699-0bab-4ccf-a1fc-fb2a5c5fee68.jpeg">
+  <img width="200" height="400" src="https://user-images.githubusercontent.com/72121163/183256539-c044d0bc-893f-4a35-8741-78002302380f.jpeg">  
+</p>
+
 ## From the Developer:
 
 This Android App is designed and developed by <a href="https://siddydevelops.github.io/">Siddharth Singh<a/>. All copyrights are reserved. Contributions and issues are always welcome.
