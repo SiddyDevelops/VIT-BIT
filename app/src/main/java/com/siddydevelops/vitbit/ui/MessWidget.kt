@@ -135,7 +135,6 @@ internal fun updateAppWidget(
     } catch (e: Exception) {
         e.printStackTrace()
     }
-    Log.d("CURTIME",curTime.toString())
     when (curTime) {
         in 2..9 -> {
             views.setTextViewText(R.id.headerTV, "Breakfast")
