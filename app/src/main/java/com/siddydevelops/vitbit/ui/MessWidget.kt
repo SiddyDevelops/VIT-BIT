@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.widget.RemoteViews
 import com.siddydevelops.vitbit.R
 import com.siddydevelops.vitbit.backend.WidgetService
@@ -36,18 +37,18 @@ class MessWidget : AppWidgetProvider() {
         curTime = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
         val m = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
-        val TIME = Calendar.getInstance()
-        TIME[Calendar.MINUTE] = 0
-        TIME[Calendar.SECOND] = 0
-        TIME[Calendar.MILLISECOND] = 0
-
-        val i = Intent(context, WidgetService::class.java)
-
-        if (service == null) {
-            service = PendingIntent.getService(context, 0, i, PendingIntent.FLAG_CANCEL_CURRENT)
-        }
-
-        m.setRepeating(AlarmManager.RTC, TIME.time.time, (1000 * 1).toLong(), service)
+//        val TIME = Calendar.getInstance()
+//        TIME[Calendar.MINUTE] = 0
+//        TIME[Calendar.SECOND] = 0
+//        TIME[Calendar.MILLISECOND] = 0
+//
+//        val i = Intent(context, WidgetService::class.java)
+//
+//        if (service == null) {
+//            service = PendingIntent.getService(context, 0, i, PendingIntent.FLAG_IMMUTABLE)
+//        }
+//
+//        m.setRepeating(AlarmManager.RTC, TIME.time.time, (1000 * 1).toLong(), service)
     }
 
     override fun onEnabled(context: Context) {
@@ -62,9 +63,9 @@ class MessWidget : AppWidgetProvider() {
         }
     }
 
-    override fun onReceive(context: Context?, intent: Intent?) {
-        super.onReceive(context, intent)
-    }
+//    override fun onReceive(context: Context?, intent: Intent?) {
+//        super.onReceive(context, intent)
+//    }
 
     override fun onDeleted(context: Context?, appWidgetIds: IntArray?) {
         super.onDeleted(context, appWidgetIds)
@@ -134,6 +135,7 @@ internal fun updateAppWidget(
     } catch (e: Exception) {
         e.printStackTrace()
     }
+    Log.d("CURTIME",curTime.toString())
     when (curTime) {
         in 2..9 -> {
             views.setTextViewText(R.id.headerTV, "Breakfast")
@@ -150,6 +152,9 @@ internal fun updateAppWidget(
         in 19..22 -> {
             views.setTextViewText(R.id.headerTV, "Dinner")
             views.setTextViewText(R.id.itemsTV, dinnerItems[dataRow])
+        } else -> {
+            views.setTextViewText(R.id.headerTV, "Breakfast")
+            views.setTextViewText(R.id.itemsTV, breakFastItems[dataRow])
         }
     }
     // Instruct the widget manager to update the widget
