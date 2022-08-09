@@ -1,3 +1,8 @@
+
+<p align="center">
+  <img height=350px src="https://user-images.githubusercontent.com/72121163/183623519-170352db-85e1-48d1-b9ab-14fd20f07a2e.png" />
+<p/>
+
 ## VIT-BIT
 <img align="left" width="200" height="200" src="https://user-images.githubusercontent.com/72121163/183304420-28d06dc4-4102-4677-bb61-26af38307c84.svg">
 
