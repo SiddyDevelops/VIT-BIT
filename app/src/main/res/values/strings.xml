@@ -17,4 +17,6 @@
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">This is an app widget description</string>
     <string name="designed_developed_by_siddharth_singh">Designed &amp; Developed By Siddharth Singh</string>
+    <string name="date_year">%s/%s, %s</string>
+    <string name="date_month">%s/%s\'s Menu</string>
 </resources>
