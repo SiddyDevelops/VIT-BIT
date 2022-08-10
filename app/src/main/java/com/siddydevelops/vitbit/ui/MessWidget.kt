@@ -89,7 +89,6 @@ internal fun updateAppWidget(
 
     // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.mess_widget)
-    //views.setTextViewText(R.id.itemsTV, widgetText)
     val intent = Intent(context, MessActivity::class.java)
     val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
     views.setOnClickPendingIntent(R.id.layoutWidget, pendingIntent)
