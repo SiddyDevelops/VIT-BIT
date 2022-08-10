@@ -6,20 +6,14 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.widget.RemoteViews
 import com.siddydevelops.vitbit.R
-import com.siddydevelops.vitbit.backend.WidgetService
 import com.siddydevelops.vitbit.others.Constants
 import jxl.Workbook
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.properties.Delegates
 
-
-/**
- * Implementation of App Widget functionality.
- */
 class MessWidget : AppWidgetProvider() {
 
     private var curTime by Delegates.notNull<Int>()
