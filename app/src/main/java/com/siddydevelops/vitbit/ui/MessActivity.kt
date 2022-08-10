@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.siddydevelops.vitbit.R
+import com.siddydevelops.vitbit.backend.MenuItems
 import com.siddydevelops.vitbit.backend.ReadMenuXls
 import com.siddydevelops.vitbit.others.Constants.BLOCK_PREFERENCE
 import com.siddydevelops.vitbit.others.Constants.MESS_PREFERENCE
@@ -29,17 +30,11 @@ import com.siddydevelops.vitbit.others.Constants.TIME_REGEX
 import com.siddydevelops.vitbit.others.Constants.VEG_MESS
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.properties.Delegates
 
 class MessActivity : AppCompatActivity(), ReadMenuXls.DisplayDataInterface {
 
-    private var scheduledDates: ArrayList<String> = ArrayList()
-    private var breakFastItems: ArrayList<String> = ArrayList()
-    private var lunchItems: ArrayList<String> = ArrayList()
-    private var snacksItems: ArrayList<String> = ArrayList()
-    private var dinnerItems: ArrayList<String> = ArrayList()
-
+    private lateinit var menuItem: MenuItems
     private val regex = Regex(SCHEDULE_REGEX)
     private val timeRegex = Regex(TIME_REGEX)
     private var cal: Calendar = Calendar.getInstance()
@@ -95,7 +90,7 @@ class MessActivity : AppCompatActivity(), ReadMenuXls.DisplayDataInterface {
         year = SimpleDateFormat("yyyy", Locale.US).format(Date())
         monthInt = Integer.parseInt(SimpleDateFormat("MM", Locale.US).format(cal.time).format(date))
         curDate = SimpleDateFormat("dd", Locale.US).format(Date())
-        calTV.text = "$curDate/$month, $year"
+        calTV.text = getString(R.string.date_year,curDate,month,year)
         curTime = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
 
         sharedPreferences = this.getSharedPreferences(SHARED_PREFERENCES,Context.MODE_PRIVATE)
@@ -137,17 +132,17 @@ class MessActivity : AppCompatActivity(), ReadMenuXls.DisplayDataInterface {
 
     private fun getByDate(date: String) {
         var row = 1
-        for (dates in scheduledDates) {
+        for (dates in menuItem.scheduledDates) {
             val matches = regex.findAll(dates)
             val scheduleTimes = matches.map { it.groupValues[1] }.toList()
             Log.d("TIMES", scheduleTimes.toString())
             for (time in scheduleTimes) {
                 if ((timeRegex.find(time)?.value ?: false) == date) {
                     Log.d("ROW::", "DATA EXTRACT HERE:: $row")
-                    breakfastTV.text = breakFastItems[row-1]
-                    lunchTV.text = lunchItems[row-1]
-                    snacksTV.text = snacksItems[row-1]
-                    dinnerTV.text = dinnerItems[row-1]
+                    breakfastTV.text = menuItem.breakFastItems[row-1]
+                    lunchTV.text = menuItem.lunchItems[row-1]
+                    snacksTV.text = menuItem.snacksItems[row-1]
+                    dinnerTV.text = menuItem.dinnerItems[row-1]
                 }
             }
             row += 1
@@ -174,8 +169,8 @@ class MessActivity : AppCompatActivity(), ReadMenuXls.DisplayDataInterface {
     private fun updateDateInView() {
         curDate = SimpleDateFormat("dd", Locale.US).format(cal.time)
         month = SimpleDateFormat("MMMM", Locale.US).format(cal.time)
-        calTV.text = "$curDate/$month, $year"
-        curDateTV.text = "$curDate/$month's Menu"
+        calTV.text = getString(R.string.date_year,curDate,month,year)
+        curDateTV.text = getString(R.string.date_month,curDate,month)
         getByDate(curDate)
     }
 
@@ -213,12 +208,8 @@ class MessActivity : AppCompatActivity(), ReadMenuXls.DisplayDataInterface {
         return true
     }
 
-    override fun displayMenu() {
-        scheduledDates = readMenuXls.scheduledDates
-        breakFastItems = readMenuXls.breakFastItems
-        lunchItems = readMenuXls.lunchItems
-        snacksItems = readMenuXls.snacksItems
-        dinnerItems = readMenuXls.dinnerItems
+    override fun displayMenu(menuItems: MenuItems) {
+        menuItem = menuItems
         getByDate(curDate)
     }
 }
