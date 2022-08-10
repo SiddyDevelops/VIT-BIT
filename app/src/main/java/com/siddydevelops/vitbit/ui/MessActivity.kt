@@ -1,6 +1,5 @@
 package com.siddydevelops.vitbit.ui
 
-import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.SharedPreferences
@@ -9,13 +8,13 @@ import android.util.Log
 import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.siddydevelops.vitbit.R
+import com.siddydevelops.vitbit.backend.ReadMenuXls
 import com.siddydevelops.vitbit.others.Constants.BLOCK_PREFERENCE
 import com.siddydevelops.vitbit.others.Constants.MESS_PREFERENCE
 import com.siddydevelops.vitbit.others.Constants.MH_G
@@ -28,13 +27,12 @@ import com.siddydevelops.vitbit.others.Constants.SHARED_PREFERENCES
 import com.siddydevelops.vitbit.others.Constants.SPECIAL_MESS
 import com.siddydevelops.vitbit.others.Constants.TIME_REGEX
 import com.siddydevelops.vitbit.others.Constants.VEG_MESS
-import jxl.Workbook
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.properties.Delegates
 
-class MessActivity : AppCompatActivity() {
+class MessActivity : AppCompatActivity(), ReadMenuXls.DisplayDataInterface {
 
     private var scheduledDates: ArrayList<String> = ArrayList()
     private var breakFastItems: ArrayList<String> = ArrayList()
@@ -69,6 +67,8 @@ class MessActivity : AppCompatActivity() {
     private lateinit var dinnerCV: CardView
 
     private lateinit var sharedPreferences: SharedPreferences
+
+    private lateinit var readMenuXls: ReadMenuXls
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,6 +106,8 @@ class MessActivity : AppCompatActivity() {
             messTV.text = sharedPreferences.getString(MESS_PREFERENCE,"defaultName")
         }
 
+        readMenuXls = ReadMenuXls(this,this)
+
         calenderIV.setOnClickListener {
             setTVDate()
         }
@@ -130,42 +132,7 @@ class MessActivity : AppCompatActivity() {
             in 19..22 -> dinnerCV.setCardBackgroundColor(getColor(R.color.card_bg_highlight))
         }
 
-        try {
-            val assetManager = assets
-            val inputStream = assetManager.open("mess_schedule.xls")
-            val workbook = Workbook.getWorkbook(inputStream)
-            val sheet = workbook.getSheet(0)                        //Two sheets per tt
-            val rows = sheet.rows
-            val col = sheet.columns
-            for (j in 0 until rows - 1) {
-                val cell = sheet.getCell(0, j + 1)       //Date and Days
-                scheduledDates.add(cell.contents)
-            }
-            for (j in 0 until rows - 1) {
-                val cell = sheet.getCell(1, j + 1)      //Breakfast
-                breakFastItems.add(cell.contents)
-            }
-            for (j in 0 until rows - 1) {
-                val cell = sheet.getCell(2, j + 1)      //Lunch
-                lunchItems.add(cell.contents)
-            }
-            for (j in 0 until rows - 1) {
-                val cell = sheet.getCell(3, j + 1)      //Snacks
-                snacksItems.add(cell.contents)
-            }
-            for (j in 0 until rows - 1) {
-                val cell = sheet.getCell(4, j + 1)     //Dinner
-                dinnerItems.add(cell.contents)
-            }
-            Log.d("ExcelData:: ", scheduledDates.toString())
-            Log.d("ExcelData:: ", breakFastItems.toString())
-            Log.d("ExcelData:: ", lunchItems.toString())
-            Log.d("ExcelData:: ", snacksItems.toString())
-            Log.d("ExcelData:: ", dinnerItems.toString())
-            getByDate(curDate)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+        readMenuXls.readMenuFromExcel()
     }
 
     private fun getByDate(date: String) {
@@ -244,5 +211,14 @@ class MessActivity : AppCompatActivity() {
         editor.putString(MESS_PREFERENCE,messTV.text.toString())
         editor.apply()
         return true
+    }
+
+    override fun displayMenu() {
+        scheduledDates = readMenuXls.scheduledDates
+        breakFastItems = readMenuXls.breakFastItems
+        lunchItems = readMenuXls.lunchItems
+        snacksItems = readMenuXls.snacksItems
+        dinnerItems = readMenuXls.dinnerItems
+        getByDate(curDate)
     }
 }
